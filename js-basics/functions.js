@@ -46,6 +46,7 @@ console.log("Area 4 : ", area(4));
 It's an array object available in every function by default, if we are not accepting any arguments in function
 and at the time of function call arguments are passed then we can access those arguments using arguments array
 object 
+arguments is a keyword in JS 
 */
 
 function hello() {
