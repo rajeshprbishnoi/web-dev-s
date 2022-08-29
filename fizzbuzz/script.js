@@ -10,7 +10,15 @@ btnPrint.onclick = function () {
 	let count = 1;
 	while (count <= num) {
 		let node = document.createElement("li");
-		if (count % 15 === 0) {
+		let text = "";
+		if (count % 3 == 0) text += "Fizz";
+		if (count % 5 == 0) text += "Buzz";
+		if (text === "") text = count;
+
+		node.textContent = text;
+
+		/*
+        if (count % 15 === 0) {
 			node.innerHTML = "FizzBuzz";
 		} else if (count % 3 === 0) {
 			node.innerHTML = "Fizz";
@@ -18,7 +26,7 @@ btnPrint.onclick = function () {
 			node.innerHTML = "Buzz";
 		} else {
 			node.innerHTML = count;
-		}
+		} */
 		ulNumList.appendChild(node);
 		count++;
 	}
