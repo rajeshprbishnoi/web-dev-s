@@ -26,7 +26,9 @@ btnPrint.onclick = function () {
 			node.innerHTML = "Buzz";
 		} else {
 			node.innerHTML = count;
-		} */
+		} 
+        */
+
 		ulNumList.appendChild(node);
 		count++;
 	}
