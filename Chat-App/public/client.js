@@ -38,6 +38,7 @@ sendMsg.onclick = function () {
 
 socket.on("messageReceived", (data) => {
 	let newMessage = document.createElement("li");
-	newMessage.innerText = data.messageData;
+	let outputString = `[${data.from}] : ` + data.messageData;
+	newMessage.innerText = outputString;
 	displayMsg.appendChild(newMessage);
 });

@@ -20,7 +20,6 @@ io.on("connection", (socket) => {
 		s.join(u);
 		s.emit("logged_in");
 		socketMap[s.id] = u;
-		console.log(users);
 		console.log(socketMap);
 	}
 
@@ -38,6 +37,7 @@ io.on("connection", (socket) => {
 	});
 
 	socket.on("messageSend", (data) => {
+		data.from = socketMap[socket.id];
 		if (data.sendTo) {
 			io.to(data.sendTo).emit("messageReceived", data);
 		} else {
