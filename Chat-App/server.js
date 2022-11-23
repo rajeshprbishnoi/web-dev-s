@@ -14,6 +14,13 @@ io.on("connection", (socket) => {
 	socket.on("dataSend", (data) => {
 		// send it to all the user connected to the server.
 		io.emit("dataReceived", data);
+
+		/*
+		// to send the data to same user
+		socket.emit("dataReceived", data);
+		// to send data to all the connected user except oneself
+		socket.broadcast.emit("dataReceived", data);
+		*/
 	});
 });
 
