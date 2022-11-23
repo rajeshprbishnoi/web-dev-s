@@ -10,17 +10,17 @@ const io = socketio(server);
 io.on("connection", (socket) => {
 	console.log("Data received from : ", socket.id);
 
-	// when data is received from client side..
-	socket.on("dataSend", (data) => {
-		// send it to all the user connected to the server.
-		io.emit("dataReceived", data);
+	socket.on("login", (data) => {
+		socket.join(data.username);
+		socket.emit("logged_in");
+	});
 
-		/*
-		// to send the data to same user
-		socket.emit("dataReceived", data);
-		// to send data to all the connected user except oneself
-		socket.broadcast.emit("dataReceived", data);
-		*/
+	socket.on("messageSend", (data) => {
+		if (data.sendTo) {
+			io.to(data.sendTo).emit("messageReceived", data);
+		} else {
+			socket.broadcast.emit("messageReceived", data);
+		}
 	});
 });
 

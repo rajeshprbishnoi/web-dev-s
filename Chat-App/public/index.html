@@ -5,14 +5,33 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script async defer src="client.js"></script>
 	</head>
 	<body>
-		<div id="main">
+		<div id="loginBox">
+			<h2>Login Box</h2>
+			<input id="username" />
+			<button id="btnStart">Start</button>
+		</div>
+
+		<div id="chatBox">
+			<h2>Chat Box</h2>
+			<input
+				type="text"
+				id="sendTo"
+				placeholder="send to (default to everyone) "
+			/>
+			<input type="text" id="msgData" placeholder="New Message" />
+			<button id="sendMsg">Send</button>
+			<ul id="displayMsg"></ul>
+		</div>
+
+		<!-- <div id="main">
 			<input id="msgData" />
 			<button id="sendData">Send</button>
 			<li id="displayData">Incoming Data</li>
-		</div>
+		</div> -->
 	</body>
 </html>

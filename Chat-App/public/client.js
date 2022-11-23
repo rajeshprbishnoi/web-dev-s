@@ -1,23 +1,37 @@
 let socket = io();
 
+let loginBox = document.getElementById("loginBox");
+let username = document.getElementById("username");
+let btnStart = document.getElementById("btnStart");
+let chatBox = document.getElementById("chatBox");
+let sendTo = document.getElementById("sendTo");
 let msgData = document.getElementById("msgData");
-let sendData = document.getElementById("sendData");
-let displayData = document.getElementById("displayData");
+let sendMsg = document.getElementById("sendMsg");
+let displayMsg = document.getElementById("displayMsg");
 
-// socket.on("connect", () => {});
+loginBox.style.display = "block";
+chatBox.style.display = "none";
 
-sendData.onclick = function () {
-	// sending input box data to server,
-	socket.emit("dataSend", {
-		msg: msgData.value,
+btnStart.onclick = function () {
+	socket.emit("login", {
+		username: username.value,
 	});
-	// clear value of the msgData, so that future input doesn't have prev. input
-	msgData.value;
 };
 
-// When data is received from server, create an list element and append it
-socket.on("dataReceived", (data) => {
-	let li = document.createElement("li");
-	li.innerText = data.msg;
-	displayData.append(li);
+socket.on("logged_in", () => {
+	loginBox.style.display = "none";
+	chatBox.style.display = "block";
+});
+
+sendMsg.onclick = function () {
+	socket.emit("messageSend", {
+		sendTo: sendTo.value,
+		messageData: msgData.value,
+	});
+};
+
+socket.on("messageReceived", (data) => {
+	let newMessage = document.createElement("li");
+	newMessage.innerText = data.messageData;
+	displayMsg.appendChild(newMessage);
 });
