@@ -2,6 +2,7 @@ let socket = io();
 
 let loginBox = document.getElementById("loginBox");
 let username = document.getElementById("username");
+let password = document.getElementById("password");
 let btnStart = document.getElementById("btnStart");
 let chatBox = document.getElementById("chatBox");
 let sendTo = document.getElementById("sendTo");
@@ -15,12 +16,17 @@ chatBox.style.display = "none";
 btnStart.onclick = function () {
 	socket.emit("login", {
 		username: username.value,
+		password: password.value,
 	});
 };
 
 socket.on("logged_in", () => {
 	loginBox.style.display = "none";
 	chatBox.style.display = "block";
+});
+
+socket.on("login_failed", () => {
+	window.alert("Username or Password wrong");
 });
 
 sendMsg.onclick = function () {
