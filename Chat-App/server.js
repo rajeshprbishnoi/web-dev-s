@@ -10,7 +10,9 @@ const io = socketio(server);
 io.on("connection", (socket) => {
 	console.log("Data received from : ", socket.id);
 
+	// when data is received from client side..
 	socket.on("dataSend", (data) => {
+		// send it to all the user connected to the server.
 		io.emit("dataReceived", data);
 	});
 });
