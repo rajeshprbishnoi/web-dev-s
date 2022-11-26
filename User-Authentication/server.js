@@ -73,6 +73,9 @@ app.get("/profile", async (req, res) => {
 
 app.get("/logout", (req, res) => {
 	req.session.userId = null;
+	// we can also destroy the whole cookie, if we do so, we won't be able to track the user
+	// if a new user also login to the site, and we don't destroy the cookie then we can say the two users are using the same machine
+	// req.session.destroy()
 	res.redirect("/login");
 });
 db.sync()
