@@ -23,11 +23,39 @@ app.get("/signup", (req, res) => {
 app.post("/signup", async (req, res) => {
 	const user = await Users.create({
 		username: req.body.username,
-		password: req.body.password,
+		password: req.body.password, // NOTE : in production we save hash of password
 		email: req.body.email,
 	});
 
 	res.status(201).send(`User ${user.id} created`);
+});
+
+app.get("/login", (req, res) => {
+	res.render("login");
+});
+app.post("/login", async (req, res) => {
+	const user = await Users.findOne({
+		where: {
+			username: req.body.username,
+		},
+	});
+
+	// if user was not in the db
+	if (!user) {
+		return res
+			.status(404) // server can't find the requested resource
+			.render("login", { error: "No such username found" });
+	}
+	// user is found but the password is wrong
+	if (user.password != req.body.password) {
+		return res
+			.status(401) // unauthorized user
+			.render("login", {
+				error: `Password ${req.body.password} is incorrect :)`,
+			});
+	}
+	// all ok then render the profile page :
+	res.render("/profile");
 });
 
 db.sync()
