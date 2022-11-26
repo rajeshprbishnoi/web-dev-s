@@ -54,8 +54,21 @@ app.post("/login", async (req, res) => {
 				error: `Password ${req.body.password} is incorrect :)`,
 			});
 	}
-	// all ok then render the profile page :
-	res.render("/profile");
+
+	// In order to show the data user entered in db, we have to do something which user can posses before rendering the profile page.
+	// we can store the userId with help of cookie at user side and when the profile page is requested the cookie will be send to server in request header by the client. based on the userId we can show the username,email etc. on client side
+
+	req.session.userId = user.id;
+
+	// all ok then render/redirect the profile page :
+	res.redirect("/profile");
+});
+
+app.get("/profile", async (req, res) => {
+	if (!req.session.userId) return res.redirect("/login");
+
+	const user = await Users.findByPk(req.session.userId);
+	res.render("profile", { user });
 });
 
 db.sync()
