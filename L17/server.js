@@ -23,6 +23,7 @@ app.get("/", (req, res) => {
 	res.render("index", { users: users.findAll() });
 });
 */
+
 let count = 0;
 app.get("/", (req, res) => {
 	console.log(req.session); // req.session exist when we are using expressSession middleware
@@ -30,6 +31,8 @@ app.get("/", (req, res) => {
 	if (!req.session.visits) req.session.visits = 1;
 	else req.session.visits++;
 	count++;
+	// count will be incremented whenever a new user comes or we refresh the page, but req.session is specifice to the session, whenever a new session start it'll be zero but when the user comes again or hit refresh it'll be incremented for that session (user) only, if a new session or user (like incognito or from different browser or different machine) comes visits for that session will start seperatly
+
 	res.render("index", { count });
 });
 
