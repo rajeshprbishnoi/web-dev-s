@@ -25,6 +25,10 @@ app.get("/", (req, res) => {
 */
 let count = 0;
 app.get("/", (req, res) => {
+	console.log(req.session); // req.session exist when we are using expressSession middleware
+
+	if (!req.session.visits) req.session.visits = 1;
+	else req.session.visits++;
 	count++;
 	res.render("index", { count });
 });
