@@ -44,3 +44,12 @@ one.attr('height', '200').css('color', 'blue')
 ## Append Prepend
 
 _mostly used in TO-DO list kind of projects._
+
+## AJAX requests
+
+```
+$.get(`url on which request is made`, (data)=>{
+  // rest of the code goes here
+  // this code will be about what we wanna do with the data we've received from that request.
+})
+```
