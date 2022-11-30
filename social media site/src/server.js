@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { db } = require("./db/models");
+const { db } = require("./db/models"); // destructuring syntax
 const { usersRoute } = require("./routes/users/index");
 const { postsRoute } = require("./routes/posts/index");
 const { commentsRoute } = require("./routes/posts/comments");

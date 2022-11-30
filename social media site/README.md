@@ -1,4 +1,4 @@
-#Social Media sample project
+# Social Media sample project
 
 ## Database setup
 
@@ -15,13 +15,36 @@ flush privileges;
 
 ## Project Structure
 
-**src**
+### Backend (server)
 
-1. **controllers** (`functions to connects routes to db operations`)
-2. **db** (`db connection and model definition`)
-3. **public** (`html/css/js files for static part of site`)
-4. **routes** (`express middleware (route wise)`)
-5. **utils**
+```
+src
+├── controllers         # functions to connect routes to db operations
+├── db                  # db connection and model definitions
+├── public              # html/js/css files for static part of site (it's actually frontend)
+└── routes              # express middlewares (route wise)
+```
+
+### Frontend (client side)
+
+```
+src/public
+├── app                                     # our own frontend js code
+│   └── common.js
+├── components                              # own own html snippets
+│   └── navbar.html
+├── css                                     # css libraries we are using
+│   └── bootstrap.css
+├── fonts                                   # fonts that we are using
+│   ├── Muli-Italic.woff2
+│   ├── Muli.woff2
+│   └── muli.css
+├── index.html                              # first / home page
+└── js                                      # js libraries we are using
+    ├── bootstrap.js
+    ├── jquery-3.4.1.js
+    └── popper.js
+```
 
 ## Business Logic
 

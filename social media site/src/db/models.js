@@ -32,7 +32,7 @@ const Posts = db.define("post", {
 	id: COL_ID_DEF,
 	title: COL_TITLE_DEF,
 	body: {
-		type: Sequelize.DataTypes.TEXT,
+		type: Sequelize.DataTypes.TEXT, // normal text size : 64KB
 		allowNull: false,
 	},
 });
@@ -40,7 +40,7 @@ const Posts = db.define("post", {
 const Comments = db.define("comment", {
 	id: COL_ID_DEF,
 	body: {
-		type: Sequelize.DataTypes.TEXT("tiny"),
+		type: Sequelize.DataTypes.TEXT("tiny"), // tiny text size : 255B
 		allowNull: false,
 	},
 });

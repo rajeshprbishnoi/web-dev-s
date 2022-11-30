@@ -21,7 +21,7 @@ route.get("/:id", async (req, res) => {
 	}
 
 	console.log(user);
-
+	// If we found the user then send the user, else status code 404 & send error message
 	if (user) {
 		res.status(200).send(user);
 	} else {
